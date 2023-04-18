@@ -1,7 +1,7 @@
 import { getAuth } from '@clerk/nextjs/server'
 import type { NextApiRequest, NextApiResponse } from 'next'
 
-const redirectUrl = process.env.GITBOOK_URL
+const redirectUrl = process.env.NEXT_PUBLIC_GITBOOK_URL
 
 export default async function handler(
   req: NextApiRequest,
