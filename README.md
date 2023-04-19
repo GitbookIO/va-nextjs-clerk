@@ -1,7 +1,7 @@
 GitBook Visitor Authentication with Next.js and Clerk.dev
 ====
 
-This is an repository demonstrating Visitor Authentication on a Next.js application using [Clerk.dev](https://clerk.dev).
+This is an example application demonstrating GitBook Visitor Authentication on a Next.js and [Clerk.dev](https://clerk.dev) stack.
 
 ## Pre-requisites
 
@@ -16,13 +16,13 @@ This demo was built using the following framework versions:
 
 ### Clerk setup
 
-1. Create a new application in Clerk — you can have a free one, for demo purposes! — and set it up with a handful of providers: this demo uses GitHub, Google and the Email providers.
+1. Create a new application in Clerk — you can have a free one, for demo purposes — and set it up with a handful of providers: this demo uses GitHub, Google and the Email providers.
 2. In the **API Keys** section, choose "Next.js" to retrieve your Clerk API keys.
 3. Copy the `.env.local.example` to `.env.local` and replace the API keys with yours.
 
 ### Creating the JWT template on Clerk
 
-Clerk offers JWT templates to customize how tokens are signed. It allows to **define the secret key used to sign the token so that GitBook can verify the validity of th token**.
+Clerk offers JWT templates to customize how tokens are signed. It allows to **define the secret key used to sign the token so that GitBook can verify the validity of JWT tokens**.
 
 Create a new JWT template:
 1. Go to your Clerk dashboard.
@@ -70,7 +70,7 @@ npm run dev
 
 ## How it works
 
-[./pages/api/visitor-auth.ts](./pages/api/visitor-auth.ts) is the API endpoint used to get the JWT token and redirect to the protected GitBook space defined in the `NEXT_PUBLIC_GITBOOK_URL` environment variable.
+[./pages/api/visitor-auth.ts](./pages/api/visitor-auth.ts) is the API endpoint used to get the JWT token and redirect to the protected GitBook space defined in the `NEXT_PUBLIC_GITBOOK_URL` environment variable. Notice how it makes use of the Clerk JWT template named `GitBookˋ to ensure the signature will match what GitBook expects.
 
 The [./components/Header.tsx](./components/Header.tsx) and [./pages/index.tsx](./pages/index.tsx) use the `<SignedIn>` and `<SignedOut>` Clerk components to adapt the displayed content.
 
